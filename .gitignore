@@ -1,0 +1,7 @@
+# Spotipy credentials cache
+.cache
+
+# Output files
+*.csv
+*.xlsx
+
