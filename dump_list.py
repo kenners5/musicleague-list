@@ -8,6 +8,8 @@ from urllib.parse import urlparse
 from tabulate import tabulate, SEPARATING_LINE
 from datetime import datetime
 import csv
+from openpyxl import Workbook
+from openpyxl.styles import Font
 
 playlists = [
     "https://open.spotify.com/playlist/3iLEJOL75n0J04oCr15Mhl",  # Fall 2023 - Week 1
@@ -85,11 +87,19 @@ def main() -> None:
     sp = Spotify(client_credentials_manager=SpotifyClientCredentials())
     with open("vinco-music-league.csv", "w") as fhandle:
         writer = csv.writer(fhandle)
+        wb = Workbook()
+        ws = wb.active
+        assert ws is not None, "No active worksheet?"
+
+        ws.append(["VinCo Music League - complete tracklist"])
+        row_id = len(list(ws.rows))
+        ws[f"A{row_id}"].font = Font(bold=True, size=24)
 
         for playlist_url in playlists:
             name, date_added = get_playlist_info(sp, playlist_url)
             tracklist = get_songs(sp, playlist_url)
 
+            # CSV
             writer.writerow([f"{name} - {date_added}", "="*40])
             writer.writerow("")
             for track in tracklist:
@@ -97,9 +107,30 @@ def main() -> None:
             writer.writerow("")
             writer.writerow("")
 
+            # XLSX
+            # Write title row, bold, merge cells in row
+            ws.append([f"{name} - {date_added}",])
+            row_id = len(list(ws.rows))
+            ws[f"A{row_id}"].font = Font(bold=True)
+            ws.append([])
+            for track in tracklist:
+                ws.append(track)
+            ws.append([])
+
+            # Table
             out.append((f"{name} - {date_added}", ""))
             out.append(SEPARATING_LINE)
             out.extend(tracklist)
+
+        artist_colsize = max([len(line[0]) for line in out])
+        # 
+        track_colsize = max([
+            len(line[1]) if line != SEPARATING_LINE else 0
+            for line in out
+            ])
+        ws.column_dimensions['A'].width = artist_colsize
+        ws.column_dimensions['B'].width = track_colsize
+        wb.save("vinco-music-league.xlsx")
 
         print(tabulate(out))
 
