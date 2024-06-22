@@ -83,15 +83,27 @@ def main() -> None:
     out: list[Union[tuple[str, str], str]] = []
 
     sp = Spotify(client_credentials_manager=SpotifyClientCredentials())
-    for playlist_url in playlists:
-        name, date_added = get_playlist_info(sp, playlist_url)
-        tracklist = get_songs(sp, playlist_url)
+    with open("vinco-music-league.csv", "w") as fhandle:
+        writer = csv.writer(fhandle)
 
-        out.append((f"{name} - {date_added}", ""))
-        out.append(SEPARATING_LINE)
-        out.extend(tracklist)
+        for playlist_url in playlists:
+            name, date_added = get_playlist_info(sp, playlist_url)
+            tracklist = get_songs(sp, playlist_url)
 
-    print(tabulate(out))
+            writer.writerow([f"{name} - {date_added}", "="*40])
+            writer.writerow("")
+            for track in tracklist:
+                writer.writerow(track)
+            writer.writerow("")
+            writer.writerow("")
+
+            out.append((f"{name} - {date_added}", ""))
+            out.append(SEPARATING_LINE)
+            out.extend(tracklist)
+
+        print(tabulate(out))
+
+
 
 if __name__ == "__main__":
     main()
