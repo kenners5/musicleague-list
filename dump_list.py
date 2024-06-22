@@ -15,9 +15,7 @@ import dateutil.tz as tz
 playlists = [
     "https://open.spotify.com/playlist/3iLEJOL75n0J04oCr15Mhl",  # Fall 2023 - Week 1
     "https://open.spotify.com/playlist/3m06DIJDUizlPFej8FvVGR",
-    "https://open.spotify.com/playlist/3m06DIJDUizlPFej8FvVGR",
     "https://open.spotify.com/playlist/1VgvWD4drEeUwSLSzHArYW",
-    "https://open.spotify.com/playlist/4ma35bOVN49oLl6xrQ3QAP",
     "https://open.spotify.com/playlist/4ma35bOVN49oLl6xrQ3QAP",
     "https://open.spotify.com/playlist/724NicOVlVZ28177YUXxAY",
     "https://open.spotify.com/playlist/7iiOptIcfDYNerF6eBtQQ2",
