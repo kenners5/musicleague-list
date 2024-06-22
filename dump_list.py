@@ -10,6 +10,7 @@ from datetime import datetime
 import csv
 from openpyxl import Workbook
 from openpyxl.styles import Font
+import dateutil.tz as tz
 
 playlists = [
     "https://open.spotify.com/playlist/3iLEJOL75n0J04oCr15Mhl",  # Fall 2023 - Week 1
@@ -91,9 +92,24 @@ def main() -> None:
         ws = wb.active
         assert ws is not None, "No active worksheet?"
 
-        ws.append(["VinCo Music League - complete tracklist"])
+        title = ("VinCo Music League - complete tracklist","")
+        generated = (f"Generated {datetime.now(tz=tz.gettz())}", "")
+
+        # CSV
+        writer.writerow(title)
+        writer.writerow(generated)
+
+        # XLSX
+        ws.append(title)
         row_id = len(list(ws.rows))
         ws[f"A{row_id}"].font = Font(bold=True, size=24)
+        ws.append(generated)
+        ws.append([])
+
+        # Table
+        out.append(title)
+        out.append(generated)
+        out.append(("", ""))
 
         for playlist_url in playlists:
             name, date_added = get_playlist_info(sp, playlist_url)
@@ -108,7 +124,7 @@ def main() -> None:
             writer.writerow("")
 
             # XLSX
-            # Write title row, bold, merge cells in row
+            # Write title row in bold
             ws.append([f"{name} - {date_added}",])
             row_id = len(list(ws.rows))
             ws[f"A{row_id}"].font = Font(bold=True)
