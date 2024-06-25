@@ -29,13 +29,14 @@ playlists = [
     "https://open.spotify.com/playlist/2skkGrmNINM9H6a0odIwmc",   # Spring 2024 - Week 1
     "https://open.spotify.com/playlist/7vMEqna7jz6bVJB6p1h2zi",
     "https://open.spotify.com/playlist/5LiLfykgtptZak0KZqNG7L",
-    "https://open.spotify.com/playlist/2HDkPApMLRDXF6IuGrnxtG"
-    "https://open.spotify.com/playlist/1NtewVXtntXtn8Ro0nmVG5"
-    "https://open.spotify.com/playlist/4pNPkal2JJTQlk7hIBTGy2"
-    "https://open.spotify.com/playlist/6YWnpoBROby0SJkAUfGvsI"
-    "https://open.spotify.com/playlist/4qfv8ly7r7em7OmucSS8J2"
-    "https://open.spotify.com/playlist/64SfZ0trxPNYDKllUL00xU"
-    "https://open.spotify.com/playlist/4brtffstgn8dRhf98dVTPr"
+    "https://open.spotify.com/playlist/2HDkPApMLRDXF6IuGrnxtG",
+    "https://open.spotify.com/playlist/1NtewVXtntXtn8Ro0nmVG5",
+    "https://open.spotify.com/playlist/4pNPkal2JJTQlk7hIBTGy2",
+    "https://open.spotify.com/playlist/6YWnpoBROby0SJkAUfGvsI",
+    "https://open.spotify.com/playlist/4qfv8ly7r7em7OmucSS8J2",
+    "https://open.spotify.com/playlist/64SfZ0trxPNYDKllUL00xU",
+    "https://open.spotify.com/playlist/4brtffstgn8dRhf98dVTPr",
+    "https://open.spotify.com/playlist/376uyIvuv7SFuT6z3j74eB"
 ]
 
 def get_uri_from_url(url: str) -> str:
