@@ -36,7 +36,8 @@ playlists = [
     "https://open.spotify.com/playlist/4qfv8ly7r7em7OmucSS8J2",
     "https://open.spotify.com/playlist/64SfZ0trxPNYDKllUL00xU",
     "https://open.spotify.com/playlist/4brtffstgn8dRhf98dVTPr",
-    "https://open.spotify.com/playlist/376uyIvuv7SFuT6z3j74eB"
+    "https://open.spotify.com/playlist/376uyIvuv7SFuT6z3j74eB",
+    "https://open.spotify.com/playlist/4JLgVDp0oeF37ZkVaf3o5J"
 ]
 
 def get_uri_from_url(url: str) -> str:
